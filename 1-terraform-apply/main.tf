@@ -22,7 +22,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "example" {
-  bucket = var.bucket_name
+  bucket = var.S3_g2_bucket_tatjana
 }
 
 resource "aws_s3_bucket_acl" "example_acl" {
