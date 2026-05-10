@@ -25,8 +25,8 @@ blocks:
           commands:
             - cd 1-terraform-apply
             - terraform init
-            - artifact push project .terraform
-            - artifact push project .terraform.lock.hcl
+            - artifact push project .terraform --force
+            - artifact push project .terraform.lock.hcl --force
       secrets:
         - name: localstack
   - name: "\U0001F680 Deploy"
@@ -41,4 +41,4 @@ blocks:
             - artifact pull project .terraform.lock.hcl
             - terraform validate
             - terraform apply -auto-approve
-            - artifact push terraform.tfstate
+            - artifact push terraform.tfstate --force
