@@ -36,7 +36,9 @@ blocks:
       jobs:
         - name: "\U0001F4E6 Deploy to Production"
           commands:
-            - echo "Building application..."
-            - echo "Running security checks..."
-            - echo "Deploying to production..."
-            - echo "Deployment completed successfully!"
+            - cd 1-terraform-apply
+            - artifact pull project .terraform
+            - artifact pull project .terraform.lock.hcl
+            - terraform validate
+            - terraform apply -auto-approve
+            - artifact push terraform.tfstate
