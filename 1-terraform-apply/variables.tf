@@ -23,6 +23,6 @@ variable "aws_endpoint" {
 variable "S3_g2_bucket_tatjana" {
   description = "The name of the S3 bucket"
   type        = string
-  default     = "my-test-bucket"
+  default     = "S3_g2_bucket_tatjana"
 }
 
