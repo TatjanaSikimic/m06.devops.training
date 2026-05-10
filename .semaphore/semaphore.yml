@@ -37,7 +37,7 @@ blocks:
         - name: "\U0001F4E6 Deploy to Production"
           commands:
             - cd 1-terraform-apply
-            - 'docker run -d -p 4566:4566 -p 4510-4559:4510-4559 localstack/localstack'
+            - 'docker run -d -p 4566:4566 localstack/localstack'
             - sleep 10
             - artifact pull project .terraform
             - artifact pull project .terraform.lock.hcl
