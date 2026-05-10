@@ -24,6 +24,7 @@ blocks:
         - name: "\U0001F7E2 Terraform Init"
           commands:
             - cd 1-terraform-apply
+            - echo "Terraform init"
             - terraform init
             - artifact push project .terraform --force
             - artifact push project .terraform.lock.hcl --force
