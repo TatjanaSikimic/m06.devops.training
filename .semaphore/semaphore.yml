@@ -39,6 +39,7 @@ blocks:
             - cd 1-terraform-apply
             - artifact pull project .terraform
             - artifact pull project .terraform.lock.hcl
+            - chmod -R +x .terraform
             - terraform validate
             - terraform apply -auto-approve
             - artifact push terraform.tfstate --force
