@@ -17,7 +17,7 @@ variable "AWS_DEFAULT_REGION" {
 variable "aws_endpoint" {
   description = "Override default endpoint for AWS API"
   type        = string
-  default     = "http://devops.tomfern.com:31566"
+  default     = "http://localhost:4566"
 }
 
 variable "S3_g2_bucket_tatjana" {
