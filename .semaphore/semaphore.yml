@@ -140,7 +140,7 @@ blocks:
             - '            "user_id": {"S": "u1"},'
             - '            "name": {"S": "Alice"},'
             - '            "email": {"S": "alice@example.com"}'
-            - '          }''`'
+            - '          }'''
             - aws dynamodb scan --table-name tatjana-table
   - name: 'Block #9'
     dependencies:
