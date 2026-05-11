@@ -88,7 +88,7 @@ blocks:
             - chmod -R +x .terraform
             - 'terraform validate  '
             - terraform apply -auto-approve
-            - artifact push workflow terraform.tfstate --force
+            - artifact push workflow terraform-ec2.tfstate --force
       secrets:
         - name: localstack
   - name: 2-terraform-ec2-destroy
@@ -101,7 +101,7 @@ blocks:
             - cd 2-terraform-ec2
             - artifact pull workflow .terraform --force
             - artifact pull workflow .terraform.lock.hcl --force
-            - artifact pull workflow terraform.tfstate --force
+            - artifact pull workflow terraform-ec2.tfstate --force
             - chmod -R +x .terraform
             - terraform destroy -auto-approve
       secrets:
@@ -122,4 +122,4 @@ blocks:
             - chmod -R +x .terraform
             - terraform validate
             - terraform apply -auto-approve
-            - artifact push workflow terraform.tfstate --force
+            - artifact push workflow terraform-db.tfstate --force
