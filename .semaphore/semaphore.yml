@@ -60,3 +60,17 @@ blocks:
             - 'aws s3 rm s3://s3-g2-bucket-tatjana/README.md'
       secrets:
         - name: localstack
+  - name: Destroy
+    dependencies:
+      - Use the bucket
+    task:
+      secrets:
+        - name: localstack
+      jobs:
+        - name: 'Job #1'
+          commands:
+            - cd 1-terraform-apply
+            - 'artifact pull workflow .terraform  '
+            - artifact pull workflow .terraform.lock.hcl
+            - artifact pull workflow terraform.tfstate
+            - terraform destroy -auto-approve
