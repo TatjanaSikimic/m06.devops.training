@@ -37,14 +37,11 @@ blocks:
       jobs:
         - name: "\U0001F4E6 Deploy to Production"
           commands:
-            - 'docker run -d -p 4566:4566 localstack/localstack'
-            - sleep 20
-            - echo "ok"
             - cd 1-terraform-apply
-            - artifact pull workflow .terraform
+            - 'artifact pull workflow .terraform  '
             - artifact pull workflow .terraform.lock.hcl
             - chmod -R +x .terraform
-            - terraform validate
+            - 'terraform validate  '
             - terraform apply -auto-approve
             - artifact push workflow terraform.tfstate
       secrets:
