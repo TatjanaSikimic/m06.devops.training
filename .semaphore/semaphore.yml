@@ -116,6 +116,7 @@ blocks:
         - name: Deploy
           commands:
             - cd 3-terraform-dynamodb
+            - echo "Deploy"
             - artifact pull workflow .terraform
             - artifact pull workflow .terraform.lock.hcl
             - chmod -R +x .terraform
