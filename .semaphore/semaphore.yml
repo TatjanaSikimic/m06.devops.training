@@ -54,6 +54,9 @@ blocks:
       jobs:
         - name: Use the bucket
           commands:
+            - cd 1-terraform-apply
             - 'aws s3 cp README.md s3://s3-g2-bucket-tatjana/'
             - 'aws s3 ls s3://s3-g2-bucket-tatjana'
             - 'aws s3 rm s3://s3-g2-bucket-tatjana/README.md'
+      secrets:
+        - name: localstack
