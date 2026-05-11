@@ -91,7 +91,7 @@ blocks:
             - artifact push workflow terraform.tfstate --force
       secrets:
         - name: localstack
-  - name: 'Block #6'
+  - name: Destroy
     dependencies:
       - 2-terraform-ec2
     task:
@@ -104,3 +104,5 @@ blocks:
             - artifact pull workflow terraform.tfstate --force
             - chmod -R +x .terraform
             - terraform destroy -auto-approve
+      secrets:
+        - name: localstack
