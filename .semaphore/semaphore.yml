@@ -47,3 +47,13 @@ blocks:
             - artifact push workflow terraform.tfstate
       secrets:
         - name: localstack
+  - name: Use the bucket
+    dependencies:
+      - "\U0001F680 Deploy"
+    task:
+      jobs:
+        - name: Use the bucket
+          commands:
+            - 'aws s3 cp README.md s3://s3-g2-bucket-tatjana/'
+            - 'aws s3 ls s3://s3-g2-bucket-tatjana'
+            - 'aws s3 rm s3://s3-g2-bucket-tatjana/README.md'
