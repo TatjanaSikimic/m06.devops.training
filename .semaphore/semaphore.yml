@@ -134,7 +134,6 @@ blocks:
         - name: Interact with the table
           commands:
             - cd 3-terraform-dynamodb
-            - cd 3-terraform-dynamodb
             - 'export ENDPOINT="http://devops.tomfern.com:31566"'
             - aws --endpoint-url $ENDPOINT dynamodb describe-table --table-name tatjana-table
             - 'aws --endpoint-url $ENDPOINT dynamodb put-item --table-name tatjana-table --item ''{"user_id": {"S": "u1"}, "name": {"S": "Alice"}, "email": {"S": "alice@example.com"}}'''
