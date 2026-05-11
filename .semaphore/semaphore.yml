@@ -88,7 +88,7 @@ blocks:
             - chmod -R +x .terraform
             - 'terraform validate  '
             - terraform apply -auto-approve
-            - artifact push workflow terraform-ec2.tfstate --force
+            - artifact push workflow terraform.tfstate --force
       secrets:
         - name: localstack
   - name: 2-terraform-ec2-destroy
@@ -101,14 +101,14 @@ blocks:
             - cd 2-terraform-ec2
             - artifact pull workflow .terraform --force
             - artifact pull workflow .terraform.lock.hcl --force
-            - artifact pull workflow terraform-ec2.tfstate --force
+            - artifact pull workflow terraform.tfstate --force
             - chmod -R +x .terraform
             - terraform destroy -auto-approve
       secrets:
         - name: localstack
   - name: 3-terraform_dynamodb-deploy
     dependencies:
-      - 2-terraform-ec2-deploy
+      - Terraform Init
     task:
       secrets:
         - name: localstack
@@ -120,6 +120,7 @@ blocks:
             - artifact pull workflow .terraform
             - artifact pull workflow .terraform.lock.hcl
             - chmod -R +x .terraform
+            - aws dynamodb delete-table --table-name tatjana-table
             - terraform validate
             - terraform apply -auto-approve
-            - artifact push workflow terraform-db.tfstate --force
+            - artifact push workflow terraform.tfstate --force
