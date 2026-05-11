@@ -138,10 +138,16 @@ blocks:
             - aws dynamodb describe-table --table-name tatjana-table
             - 'aws dynamodb put-item --table-name tatjana-table --item ''{"user_id": {"S": "u1"}, "name": {"S": "Alice"}, "email": {"S": "alice@example.com"}}'''
             - aws dynamodb scan --table-name tatjana-table
-  - name: 'Block #9'
+  - name: 3-terraform-dynamodb-destroy
     dependencies:
       - 'Interact '
     task:
       jobs:
-        - name: 'Job #1'
-          commands: []
+        - name: Destroy
+          commands:
+            - cd 3-terraform-dynamodb
+            - artifact pull workflow .terraform --force
+            - artifact pull workflow .terraform.lock.hcl --force
+            - artifact pull workflow terraform.tfstate --force
+            - chmod -R +x .terraform
+            - terraform destroy -auto-approve
