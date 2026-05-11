@@ -39,6 +39,7 @@ blocks:
           commands:
             - 'docker run -d -p 4566:4566 localstack/localstack'
             - sleep 20
+            - echo "ok"
             - cd 1-terraform-apply
             - artifact pull workflow .terraform
             - artifact pull workflow .terraform.lock.hcl
