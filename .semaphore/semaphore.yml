@@ -134,10 +134,16 @@ blocks:
         - name: Interact with the table
           commands:
             - cd 3-terraform-dynamodb
-            - 'export ENDPOINT="http://devops.tomfern.com:31566"'
-            - aws --endpoint-url $ENDPOINT dynamodb describe-table --table-name tatjana-table
-            - 'aws --endpoint-url $ENDPOINT dynamodb put-item --table-name tatjana-table --item ''{"user_id": {"S": "u1"}, "name": {"S": "Alice"}, "email": {"S": "alice@example.com"}}'''
-            - aws --endpoint-url $ENDPOINT dynamodb scan --table-name tatjana-table
+            - aws dynamodb list-tables
+            - aws dynamodb describe-table --table-name tatjana-table
+            - aws dynamodb put-item \
+            - '  --table-name tatjana-table \'
+            - '  --item ''{'
+            - '      "user_id": {"S": "u1"},'
+            - '      "name": {"S": "Alice"},'
+            - '      "email": {"S": "alice@example.com"}'
+            - '    }'''
+            - aws dynamodb scan --table-name tatjana-table
   - name: 'Block #9'
     dependencies:
       - 'Interact '
