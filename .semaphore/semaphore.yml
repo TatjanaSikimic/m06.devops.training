@@ -83,11 +83,11 @@ blocks:
         - name: Deploy
           commands:
             - cd 2-terraform-ec2
-            - artifact pull workflow .terraform --force
-            - artifact pull workflow .terraform.lock.hcl --force
+            - 'artifact pull workflow .terraform '
+            - 'artifact pull workflow .terraform.lock.hcl '
             - chmod -R +x .terraform
             - 'terraform validate  '
             - terraform apply -auto-approve
-            - artifact push workflow terraform.tfstate
+            - artifact push workflow terraform.tfstate --force
       secrets:
         - name: localstack
