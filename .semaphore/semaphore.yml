@@ -26,8 +26,8 @@ blocks:
             - cd 1-terraform-apply
             - echo "Terraform init"
             - terraform init
-            - artifact push project .terraform --force
-            - artifact push project .terraform.lock.hcl --force
+            - 'artifact push workflow .terraform '
+            - 'artifact push workflow .terraform.lock.hcl '
       secrets:
         - name: localstack
   - name: "\U0001F680 Deploy"
@@ -38,13 +38,11 @@ blocks:
         - name: "\U0001F4E6 Deploy to Production"
           commands:
             - cd 1-terraform-apply
-            - 'docker run -d -p 4566:4566 localstack/localstack'
-            - sleep 10
-            - artifact pull project .terraform
-            - artifact pull project .terraform.lock.hcl
+            - 'artifact pull workflow .terraform  '
+            - artifact pull workflow .terraform.lock.hcl
             - chmod -R +x .terraform
-            - terraform validate
+            - 'terraform validate  '
             - terraform apply -auto-approve
-            - artifact push terraform.tfstate --force
+            - artifact push workflow terraform.tfstate
       secrets:
         - name: localstack
