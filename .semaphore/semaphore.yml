@@ -108,7 +108,7 @@ blocks:
         - name: localstack
   - name: 3-terraform_dynamodb-deploy
     dependencies:
-      - 2-terraform-ec2-deploy
+      - Terraform Init
     task:
       secrets:
         - name: localstack
