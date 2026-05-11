@@ -93,7 +93,7 @@ blocks:
         - name: localstack
   - name: 2-terraform-ec2-destroy
     dependencies:
-      - Terraform Init
+      - 2-terraform-ec2-deploy
     task:
       jobs:
         - name: Destroy
@@ -106,3 +106,16 @@ blocks:
             - terraform destroy -auto-approve
       secrets:
         - name: localstack
+  - name: 3-terraform_dynamodb-deploy
+    dependencies:
+      - 2-terraform-ec2-deploy
+    task:
+      secrets:
+        - name: localstack
+      jobs:
+        - name: Deploy
+          commands:
+            - cd 3-terraform-dynamodb
+            - terraform validate
+            - terraform apply -auto-approve
+            - artifact push workflow terraform.tfstate --force
