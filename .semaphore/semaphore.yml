@@ -83,8 +83,8 @@ blocks:
         - name: Deploy
           commands:
             - cd 2-terraform-ec2
-            - 'artifact pull workflow .terraform  '
-            - artifact pull workflow .terraform.lock.hcl
+            - artifact pull workflow .terraform --force
+            - artifact pull workflow .terraform.lock.hcl --force
             - chmod -R +x .terraform
             - 'terraform validate  '
             - terraform apply -auto-approve
