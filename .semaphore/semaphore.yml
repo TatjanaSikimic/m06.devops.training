@@ -93,7 +93,7 @@ blocks:
         - name: localstack
   - name: 2-terraform-ec2-destroy
     dependencies:
-      - 2-terraform-ec2-deploy
+      - Terraform Init
     task:
       jobs:
         - name: Destroy
