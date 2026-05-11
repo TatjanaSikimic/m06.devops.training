@@ -143,7 +143,7 @@ blocks:
             - '            "name": {"S": "Alice"},'
             - '            "email": {"S": "alice@example.com"}'
             - '          }''`'
-            - aws dynamodb scan --table-name devops-training-table
+            - aws dynamodb scan --table-name tatjana-table
   - name: 'Block #9'
     dependencies:
       - 'Interact '
