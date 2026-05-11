@@ -67,10 +67,11 @@ blocks:
       secrets:
         - name: localstack
       jobs:
-        - name: 'Job #1'
+        - name: Pulling the artifacts
           commands:
             - cd 1-terraform-apply
             - artifact pull workflow .terraform --force
             - artifact pull workflow .terraform.lock.hcl --force
             - artifact pull workflow terraform.tfstate --force
+            - chmod -R +x .terraform
             - terraform destroy -auto-approve
