@@ -28,6 +28,8 @@ blocks:
             - terraform init
             - 'artifact push workflow .terraform '
             - 'artifact push workflow .terraform.lock.hcl '
+        - name: 'Job #2'
+          commands: []
       secrets:
         - name: localstack
   - name: "\U0001F680 Deploy"
@@ -42,7 +44,9 @@ blocks:
             - 'artifact pull workflow .terraform  '
             - artifact pull workflow .terraform.lock.hcl
             - chmod -R +x .terraform
-            - 'terraform validate  '
+            - terraform validate
+            - echo "TF_VAR_aws_endpoint=$TF_VAR_aws_endpoint"
+            - terraform console <<< "var.aws_endpoint"
             - terraform apply -auto-approve
             - artifact push workflow terraform.tfstate
       secrets:
